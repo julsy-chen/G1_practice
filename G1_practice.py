@@ -3,8 +3,7 @@
 import random
 
 '''
-6. maybe figure out how to do a time delay of like two seconds *
-7. make the game infinite
+8. maybe figure out how to do a time delay of like two seconds *
 '''
 
 question_dict_answer = {1 : {
@@ -158,24 +157,31 @@ question_dict_answer = {1 : {
 
                         }
 
-question_num = list(range(1, 17))
-random.shuffle(question_num)
+# the actual game
+while True:
+    question_num = list(range(1, 17))
+    random.shuffle(question_num)
 
-for q_n in question_num:
-    q_n = question_dict_answer[q_n] # q_n is the random question number
-    ans = q_n.get("answer")
-    print(q_n.get("question")) # prints the question corresponding to the index
+    for q_n in question_num:
+        q_n = question_dict_answer[q_n] # q_n is the random question number
+        ans = q_n.get("answer")
+        print(q_n.get("question")) # prints the question corresponding to the index
 
-    # print the possible multiple choices
-    multiple_choice = ''.join(q_n.get("choices"))
-    multiple_choice_lines = multiple_choice.splitlines(keepends = False)
+        # print the possible multiple choices
+        multiple_choice = ''.join(q_n.get("choices"))
+        multiple_choice_lines = multiple_choice.splitlines(keepends = False)
 
-    for line in multiple_choice_lines:
-        print(line)
-        
-    i = input()
+        for line in multiple_choice_lines:
+            print(line)
+            
+        i = input()
 
-    if i == ans:
-        print("CORRECT")
-    else:
-        print(f"INCORRECT, the correct answer was {ans}")
+        if i == ans or i == ans.lower():
+            print("CORRECT")
+        else:
+            print("INCORRECT, try again")
+            i = input()
+            if i == ans or ans.lower():
+                print("CORRECT")
+            else:
+                print(f"INCORRECT, the correct answer was {ans}")
